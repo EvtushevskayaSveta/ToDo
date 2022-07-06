@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import TodoList from './to_do/TodoList';
 import Navbar from './to_do/Navbar';
+import Todo from './Todo';
 
 const App = () => {
   const [todos, setTodos] = React.useState([]);
@@ -21,7 +22,7 @@ const App = () => {
       <View style={styles.container}>
         <TodoList todos={todos} onSubmit={addTodo} />
         {todos.map(todo => {
-          return <Text>{todo.title}</Text>;
+          return <Todo key={todo.id} todo={todo} />;
         })}
       </View>
     </SafeAreaView>
