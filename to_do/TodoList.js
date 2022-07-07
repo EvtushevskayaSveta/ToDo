@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {
+  TextInput,
   View,
   Alert,
-  TextInput,
   StyleSheet,
   Button,
   SafeAreaView,
@@ -10,9 +10,10 @@ import {
 
 const TodoList = ({onSubmit}) => {
   const [value, setValue] = useState('');
+  const [descr, setDescr] = useState('');
   const pressHandler = () => {
     if (value.trim()) {
-      onSubmit(value);
+      onSubmit(value + '\n' + descr);
       setValue('');
     } else {
       Alert.alert('enter the case name');
@@ -32,7 +33,10 @@ const TodoList = ({onSubmit}) => {
         style={styles.input}
         placeholder="Description"
         autoCorrect={false}
-        autoCapitalize="none"></TextInput>
+        autoCapitalize="none"
+        onChangeText={setDescr}
+        value={descr}
+      />
       <View style={styles.button}>
         <Button title="add" onPress={pressHandler} />
       </View>
