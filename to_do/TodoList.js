@@ -1,18 +1,42 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Alert,
+  TextInput,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+} from 'react-native';
 
 const TodoList = ({onSubmit}) => {
+  const [value, setValue] = useState('');
   const pressHandler = () => {
-    onSubmit('test');
+    if (value.trim()) {
+      onSubmit(value);
+      setValue('');
+    } else {
+      Alert.alert('enter the case name');
+    }
   };
   return (
-    <View>
-      <TextInput style={styles.input} label="Name" />
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        placeholder="Name"
+        autoCorrect={false}
+        autoCapitalize="none"
+        onChangeText={setValue}
+        value={value}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Description"
+        autoCorrect={false}
+        autoCapitalize="none"></TextInput>
       <View style={styles.button}>
         <Button title="add" onPress={pressHandler} />
       </View>
-      <TextInput style={styles.input} label="Descr"></TextInput>
-    </View>
+    </SafeAreaView>
   );
 };
 
