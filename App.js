@@ -16,6 +16,10 @@ const App = () => {
       },
     ]);
   };
+
+  const removeTodo = id => {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  };
   return (
     <SafeAreaView>
       <Navbar title="Todo app" />
@@ -24,7 +28,9 @@ const App = () => {
         <FlatList
           data={todos}
           keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <Todo todo={item} />}></FlatList>
+          renderItem={({item}) => (
+            <Todo todo={item} onRemove={removeTodo} />
+          )}></FlatList>
       </View>
     </SafeAreaView>
   );

@@ -15,6 +15,7 @@ const TodoList = ({onSubmit}) => {
     if (value.trim()) {
       onSubmit(value + '\n' + descr);
       setValue('');
+      setDescr('');
     } else {
       Alert.alert('enter the case name');
     }
