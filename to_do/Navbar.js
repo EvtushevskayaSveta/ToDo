@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: '#808080',
-    paddingBottom: 10,
-    marginBottom: 10,
+    paddingBottom: 20,
   },
   text: {
     fontSize: 20,

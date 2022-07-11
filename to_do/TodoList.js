@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Button,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 
 const TodoList = ({onSubmit}) => {
@@ -17,7 +18,7 @@ const TodoList = ({onSubmit}) => {
       setValue('');
       setDescr('');
     } else {
-      Alert.alert('enter the case name');
+      Alert.alert('enter the task name and description');
     }
   };
   return (
@@ -38,9 +39,9 @@ const TodoList = ({onSubmit}) => {
         onChangeText={setDescr}
         value={descr}
       />
-      <View style={styles.button}>
+      <TouchableOpacity style={styles.button}>
         <Button title="add" onPress={pressHandler} />
-      </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -52,6 +53,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     borderWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: '#FFFFFF',
   },
   button: {
     width: '15%',
