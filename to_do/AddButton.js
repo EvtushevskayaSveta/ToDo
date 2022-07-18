@@ -20,8 +20,10 @@ const AddButton = ({onSubmit, value, descr, setDescr, setValue}) => {
           textAlignVertical: 'center',
           textAlign: 'center',
           color: '#fff',
+          fontSize: 18,
+          fontWeight: 'bold',
         }}>
-        Add
+        +
       </Text>
     </TouchableOpacity>
   );
@@ -29,7 +31,7 @@ const AddButton = ({onSubmit, value, descr, setDescr, setValue}) => {
 
 const styles = StyleSheet.create({
   addButton: {
-    width: '15%',
+    width: 40,
     height: 40,
     position: 'absolute',
     right: 10,
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00cccc',
     borderColor: '#e9eeef',
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
