@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, FlatList, View} from 'react-native';
 import TodoList from './to_do/TodoList';
 import Navbar from './to_do/Navbar';
 import Todo from './to_do/Todo';
 
 const App = () => {
-  const [todos, setTodos] = React.useState([
+  const [todos, setTodos] = useState([
     {
       id: Date.now().toString(),
       title: 'create your first task',
@@ -25,11 +25,11 @@ const App = () => {
     ]);
   };
 
-  const removeTodo = id => {
+  const pressOnRemove = id => {
     setTodos(prev => prev.filter(todo => todo.id !== id));
   };
 
-  const changeCompleted = id => {
+  const pressOnChange = id => {
     setTodos(
       todos.map(prev => {
         if (prev.id === id) {
@@ -44,7 +44,7 @@ const App = () => {
   };
   return (
     <SafeAreaView>
-      <Navbar title="Todo app" />
+      <Navbar title="Todo list" />
       <View style={styles.todo}>
         <View style={styles.container}>
           <TodoList todos={todos} onSubmit={addTodo} />
@@ -55,7 +55,7 @@ const App = () => {
         data={todos}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
-          <Todo todo={item} onRemove={removeTodo} onChange={changeCompleted} />
+          <Todo todo={item} onRemove={pressOnRemove} onChange={pressOnChange} />
         )}></FlatList>
     </SafeAreaView>
   );

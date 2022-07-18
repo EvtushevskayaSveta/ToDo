@@ -1,59 +1,41 @@
-import React, {useState} from 'react';
-import {
-  TextInput,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Alert,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {TextInput, StyleSheet, SafeAreaView, Alert} from 'react-native';
+import AddButton from './AddButton';
 
-const TodoInput = ({onSubmit}) => {
+const TodoList = ({onSubmit}) => {
   const [value, setValue] = useState('');
   const [descr, setDescr] = useState('');
 
-  const pressHandler = () => {
-    if (value.trim() && descr.trim()) {
-      onSubmit(value, descr);
-      setValue('');
-      setDescr('');
-    } else {
-      Alert.alert('Введите название дела и описание');
-    }
-  };
+  const secondTextInput = useRef();
 
   return (
     <SafeAreaView style={styles.todoContainer}>
       <TextInput
         style={styles.input}
         placeholder="Name"
-        placeholderTextColor={'#778899'}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={text => setValue(text)}
+        returnKeyType="next"
         value={value}
+        onSubmitEditing={() => secondTextInput.current.focus()}
       />
       <TextInput
         style={styles.input}
         placeholder="Descr"
-        placeholderTextColor={'#778899'}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={text => setDescr(text)}
+        ref={secondTextInput}
         value={descr}
       />
-      <TouchableOpacity style={styles.addButton}>
-        <Text
-          onPress={pressHandler}
-          style={{
-            textAlignVertical: 'center',
-            textAlign: 'center',
-            color: '#fff',
-            fontSize: 26,
-          }}>
-          +
-        </Text>
-      </TouchableOpacity>
+      <AddButton
+        onSubmit={onSubmit}
+        value={value}
+        descr={descr}
+        setDescr={setDescr}
+        setValue={setValue}
+      />
     </SafeAreaView>
   );
 };
@@ -72,19 +54,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderColor: '#fff',
     borderWidth: 1,
-    borderRadius: 16,
-  },
-  addButton: {
-    width: 40,
-    height: 40,
-    position: 'absolute',
-    right: 10,
-    top: 40,
-    backgroundColor: '#34D0BA',
-    borderColor: '#e9eeef',
-    borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 12,
   },
 });
 
-export default TodoInput;
+export default TodoList;

@@ -10,14 +10,15 @@ const Navbar = props => {
 const styles = StyleSheet.create({
   navbar: {
     height: 60,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    backgroundColor: '#808080',
-    paddingBottom: 20,
+    backgroundColor: '#ffd800',
   },
   text: {
+    position: 'absolute',
     fontSize: 20,
-    color: 'while',
+    color: 'white',
+    top: 15,
+    alignSelf: 'center',
   },
 });
+
 export default Navbar;
